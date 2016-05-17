@@ -42,12 +42,15 @@ J = (1/(2*m)) * (nonreg + reg);
 %first gradient
 a = X(1:m,1);
 first = sum(error.*a)/m;
+grad(1) = first;
 
 %second gradient
-b = X(1:m,2);
-second = sum(error.*b)/m + (lambda/m)*(theta(2));
+num_iters = (size(X))(2);
+for iter = 2:num_iters
+	b = X(1:m,iter);
+	second = sum(error.*b)/m + ((lambda/m)*(theta(iter)));
+	grad(iter) = second;
+end
 
-grad(1) = first;
-grad(2) = second;
 
 end
