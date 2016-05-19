@@ -17,7 +17,10 @@ sim = 0;
 %
 
 
-
+diff = x1 .- x2;
+sqr = sum(diff.^2);
+div = sqr/(-2*(sigma^2));
+sim = exp(div);
 
 
 
