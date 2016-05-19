@@ -23,11 +23,36 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 
+cs = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
+sigs = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
 
+prederrmin = 1;
 
+for i = 1:length(cs)
 
+	c = cs(i);
 
+	for j = 1:length(sigs)
 
+		sig = sigs(j);
+
+		model = svmTrain(X, y, c, @(x1, x2) gaussianKernel(x1, x2, sig));
+
+		predictions = svmPredict(model, Xval);
+
+		prederr = mean(double(predictions ~= yval));
+
+		if (prederr < prederrmin)
+
+			C = c;
+			sigma = sig;
+			prederrmin = prederr;
+
+		endif
+
+	end
+
+end
 
 % =========================================================================
 
