@@ -99,9 +99,13 @@ while ~isempty(email_contents)
 
 
 
-
-
-
+    len = length(vocabList);
+    for y = 1:len
+        dicword = vocabList{y};
+        if(strcmp(str, dicword))
+            word_indices = [word_indices; y];
+        end
+    end
 
 
 
