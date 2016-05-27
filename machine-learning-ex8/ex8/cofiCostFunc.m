@@ -44,14 +44,13 @@ vals = X * Theta';
 
 diff = (vals - Y);
 
-J = sum(sum(diff(R==1).^2))/2;
+J = sum(sum(diff(R==1).^2))/2 ;
 
 
 %gradients
 X_grad = (diff .* R)*Theta;
 
-Theta_grad = ((X'*(vals.*R)-X'*(Y.*R)))'+lambda.*Theta;
-
+Theta_grad = (X' * (diff .*R))';
 
 
 
